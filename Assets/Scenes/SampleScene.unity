@@ -437,6 +437,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1697347951}
+        m_MethodName: Shake
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   threshold: 3
 --- !u!1 &1697347949
 GameObject:
@@ -566,6 +577,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interval: 1
   pingpong: {fileID: 1697347950}
+  timeMargin: 0.1
 --- !u!4 &1697347952
 Transform:
   m_ObjectHideFlags: 0

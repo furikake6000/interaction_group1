@@ -11,11 +11,12 @@ public class AccelInput : MonoBehaviour
     AccelInputEvent events;
     [SerializeField, Range(0.0f, 10.0f)]
     float threshold;
+    bool isInputContinue;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        isInputContinue = false;
     }
 
     // Update is called once per frame
@@ -23,7 +24,12 @@ public class AccelInput : MonoBehaviour
     {
         Vector3 accel = Input.acceleration;
         if (accel.magnitude > threshold) {
-            events.Invoke(accel.magnitude, accel.normalized);
+            if (!isInputContinue) {
+                events.Invoke(accel.magnitude, accel.normalized);
+            }
+            isInputContinue = true;
+        } else {
+            isInputContinue = false;
         }
     }
 }
