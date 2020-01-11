@@ -1,0 +1,16 @@
+{
+    "notes": [
+        {
+            "time": 1.0,
+            "type": "left"
+        },
+        {
+            "time": 3.0,
+            "type": "right"
+        },
+        {
+            "time": 5.0,
+            "type": "zigzag"
+        }
+    ]
+}
