@@ -21,4 +21,9 @@ public class ButtonManager : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene");
     }
+
+    public void PushReturnButton()
+    {
+        SceneManager.LoadScene("TitleScene");
+    }
 }
