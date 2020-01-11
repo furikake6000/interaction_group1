@@ -1,0 +1,17 @@
+{
+    "bpm": 120,
+    "notes": [
+        {
+            "time": 4.0,
+            "type": "left"
+        },
+        {
+            "time": 12.0,
+            "type": "right"
+        },
+        {
+            "time": 20.0,
+            "type": "zigzag"
+        }
+    ]
+}
