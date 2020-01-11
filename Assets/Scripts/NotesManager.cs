@@ -136,23 +136,6 @@ public class NotesManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // elapsedTime += Time.deltaTime;
-        // if(elapsedTime >= interval) {
-        //     elapsedTime -= interval;
-        //     rightPingSound.Play();
-        //     Debug.Log("sound!");
-        // }
-
-        if(Random.Range(0, 1000) == 0) {
-            AddNote(NoteType.Left);
-        }
-        if(Random.Range(0, 1000) == 0) {
-            AddNote(NoteType.Right);
-        }
-        if(Random.Range(0, 2000) == 0) {
-            AddNote(NoteType.Zigzag);
-        }
-
         foreach(Note note in notes){
             note.Update(sounds, intervals);
         }
@@ -160,13 +143,6 @@ public class NotesManager : MonoBehaviour
     }
 
     public void Shake(float x, Vector3 v){
-        // float slack = Mathf.Min(elapsedTime, 1.0f - elapsedTime);
-        // if (slack < timeMargin){
-        //     Debug.Log("OK! " + slack);
-        // } else {
-        //     Debug.Log("NG " + slack);
-        // }
-
         foreach(Note note in notes){
             note.CheckForShake(timeMargin, intervals);
         }
@@ -185,7 +161,7 @@ public class NotesManager : MonoBehaviour
         };
     }
 
-    void AddNote(NoteType type){
+    public void AddNote(NoteType type){
         notes.Add(new Note(type));
     }
 }

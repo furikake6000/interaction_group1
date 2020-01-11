@@ -6,13 +6,14 @@ using UnityEngine;
 public class ScoreData
 {
     public int bpm;
-    public NoteData notes;
+    public NoteData[] notes;
 }
 [System.Serializable]
 public class NoteData
 {
     public float time;
     public string type;
+    public bool enabled;
 
     static Dictionary<string, NoteType> noteTypeDic = new Dictionary<string, NoteType>(){
         {"left", NoteType.Left},
@@ -20,6 +21,10 @@ public class NoteData
         {"zigzag", NoteType.Zigzag},
         {"top", NoteType.Top}
     };
+
+    public NoteData(){
+        enabled = false;
+    }
 
     public NoteType Type()
     {
@@ -50,7 +55,14 @@ public class MusicManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        float beatTime = music.time * bpm / 60.0f;
+
+        foreach (NoteData nd in scoreData.notes){
+            if(nd.enabled == false && beatTime >= nd.time){
+                notesManager.AddNote(nd.Type());
+                nd.enabled = true;
+            }
+        }
     }
 
     void LoadScoreFile(){
@@ -59,8 +71,6 @@ public class MusicManager : MonoBehaviour
         string scoreDataText = textasset.text; 
 
         scoreData = JsonUtility.FromJson<ScoreData>(scoreDataText);
-        Debug.Log(scoreDataText);
-        Debug.Log(scoreData.bpm);
     }
 
     // Seconds per beat

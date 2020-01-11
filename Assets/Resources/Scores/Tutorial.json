@@ -2,15 +2,15 @@
     "bpm": 120,
     "notes": [
         {
-            "time": 1.0,
+            "time": 4.0,
             "type": "left"
         },
         {
-            "time": 3.0,
+            "time": 12.0,
             "type": "right"
         },
         {
-            "time": 5.0,
+            "time": 20.0,
             "type": "zigzag"
         }
     ]
