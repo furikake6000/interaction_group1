@@ -7,6 +7,7 @@ public class ScoreData
 {
     public int bpm;
     public string resource;
+    public float length;
     public NoteData[] notes;
 }
 [System.Serializable]
@@ -60,6 +61,10 @@ public class MusicManager : MonoBehaviour
                 notesManager.AddNote(nd.Type());
                 nd.enabled = true;
             }
+        }
+
+        if (beatTime > scoreData.length){
+            music.Stop();
         }
     }
 
