@@ -1,19 +1,19 @@
 {
     "resource": "jumper",
-    "bpm": 178.3,
-    "length": 26,
+    "bpm": 175,
+    "length": 999,
     "notes": [
         {
-            "time": 8.0,
+            "time": 12.0,
             "type": "left"
         },
         {
             "time": 16.0,
-            "type": "left"
+            "type": "right"
         },
         {
-            "time": 24.0,
-            "type": "left"
+            "time": 20.0,
+            "type": "zigzag"
         }
     ]
 }
