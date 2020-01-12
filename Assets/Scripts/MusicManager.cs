@@ -6,6 +6,7 @@ using UnityEngine;
 public class ScoreData
 {
     public int bpm;
+    public string resource;
     public NoteData[] notes;
 }
 [System.Serializable]
@@ -49,7 +50,7 @@ public class MusicManager : MonoBehaviour
 
         LoadScoreFile();
 
-        notesManager.SetTempo(bpm);
+        music.Play();
     }
 
     // Update is called once per frame
@@ -71,6 +72,9 @@ public class MusicManager : MonoBehaviour
         string scoreDataText = textasset.text; 
 
         scoreData = JsonUtility.FromJson<ScoreData>(scoreDataText);
+
+        notesManager.SetTempo(bpm);
+        music.clip = Resources.Load("Music/" + scoreData.resource, typeof(AudioClip)) as AudioClip;
     }
 
     // Seconds per beat
