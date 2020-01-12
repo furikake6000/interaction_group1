@@ -145,7 +145,7 @@ public class TextManager : MonoBehaviour
             break;
         }
     }
-    void GotoText(int gotoState) {
+    public void GotoText(int gotoState) {
         state = gotoState - 1;
         GotoNextText();
     }
