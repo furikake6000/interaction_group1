@@ -63,7 +63,7 @@ public class Note
         }
     }
 
-    public void CheckForShake(float timeMargin, Dictionary<NoteType, float> intervals) {
+    public bool CheckForShake(float timeMargin, Dictionary<NoteType, float> intervals) {
         // 判定
         float slack = 999.0f;
         float elapsedTime = Time.time - startTime;
@@ -88,9 +88,10 @@ public class Note
 
         if (slack < timeMargin){
             Debug.Log("OK! " + slack + " < " + timeMargin);
-        } else {
-            Debug.Log("NG " + slack + " > " + timeMargin);
+            return true;
         }
+        Debug.Log("NG " + slack + " > " + timeMargin);
+        return false;
     }
 }
 public enum NoteType
@@ -106,6 +107,7 @@ public class NotesManager : MonoBehaviour
 
     [SerializeField] float interval = 1f;
     [SerializeField] AudioSource leftPingSound, rightPingSound, topPingSound;
+    [SerializeField] AudioSource hitAudio, missAudio;
 
     [SerializeField] float timeMargin = 0.3f;
 
@@ -143,8 +145,18 @@ public class NotesManager : MonoBehaviour
     }
 
     public void Shake(float x, Vector3 v){
+        bool isHit = false;
         foreach(Note note in notes){
-            note.CheckForShake(timeMargin, intervals);
+            if (note.CheckForShake(timeMargin, intervals)){
+                isHit = true;
+            }
+        }
+
+        // 音を鳴らす
+        if (isHit) {
+            hitAudio.Play();
+        } else {
+            missAudio.Play();
         }
     }
     public void Shake(){
