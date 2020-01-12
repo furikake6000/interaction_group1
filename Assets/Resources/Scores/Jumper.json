@@ -1,0 +1,19 @@
+{
+    "resource": "jumper",
+    "bpm": 175,
+    "length": 999,
+    "notes": [
+        {
+            "time": 12.0,
+            "type": "left"
+        },
+        {
+            "time": 16.0,
+            "type": "right"
+        },
+        {
+            "time": 20.0,
+            "type": "zigzag"
+        }
+    ]
+}

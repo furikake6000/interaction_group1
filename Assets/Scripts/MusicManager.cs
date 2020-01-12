@@ -77,7 +77,7 @@ public class MusicManager : MonoBehaviour
 
         scoreData = JsonUtility.FromJson<ScoreData>(scoreDataText);
 
-        notesManager.SetTempo(bpm);
+        notesManager.SetTempo(scoreData.bpm);
         music.clip = Resources.Load("Music/" + scoreData.resource, typeof(AudioClip)) as AudioClip;
 
         music.Play();
@@ -86,5 +86,9 @@ public class MusicManager : MonoBehaviour
     // Seconds per beat
     public float Spb(){
         return 60.0f / (float)bpm;
+    }
+
+    public bool isPlay() {
+        return music.isPlaying;
     }
 }
