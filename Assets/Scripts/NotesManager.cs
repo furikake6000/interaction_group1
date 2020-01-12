@@ -56,7 +56,7 @@ public class Note
                 }
                 break;
             case NoteType.Zigzag:
-                if(phase > 7){
+                if(phase > 8){
                     enabled = false;
                 }
                 break;
@@ -78,10 +78,10 @@ public class Note
                 break;
             case NoteType.Zigzag:
                 slack = Mathf.Min(new float[4] {
-                    Mathf.Abs(elapsedTime - intervals[type] * 3),
                     Mathf.Abs(elapsedTime - intervals[type] * 4),
                     Mathf.Abs(elapsedTime - intervals[type] * 5),
-                    Mathf.Abs(elapsedTime - intervals[type] * 6)
+                    Mathf.Abs(elapsedTime - intervals[type] * 6),
+                    Mathf.Abs(elapsedTime - intervals[type] * 7)
                 });
                 break;
         }
