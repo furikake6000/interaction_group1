@@ -36,7 +36,6 @@ public class NoteData
 public class MusicManager : MonoBehaviour
 {
     [SerializeField] float bpm;
-    [SerializeField] string scoreFileName;
 
     NotesManager notesManager;
     AudioSource music;
@@ -48,9 +47,7 @@ public class MusicManager : MonoBehaviour
         notesManager = GetComponent<NotesManager>();
         music = GetComponent<AudioSource>();
 
-        LoadScoreFile();
-
-        music.Play();
+        LoadScoreFile("Tutorial1");
     }
 
     // Update is called once per frame
@@ -66,7 +63,7 @@ public class MusicManager : MonoBehaviour
         }
     }
 
-    void LoadScoreFile(){
+    void LoadScoreFile(string scoreFileName){
         TextAsset textasset = new TextAsset();
         textasset = Resources.Load("Scores/" + scoreFileName, typeof(TextAsset) )as TextAsset;
         string scoreDataText = textasset.text; 
@@ -75,6 +72,8 @@ public class MusicManager : MonoBehaviour
 
         notesManager.SetTempo(bpm);
         music.clip = Resources.Load("Music/" + scoreData.resource, typeof(AudioClip)) as AudioClip;
+
+        music.Play();
     }
 
     // Seconds per beat
