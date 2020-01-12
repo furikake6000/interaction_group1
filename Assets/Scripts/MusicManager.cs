@@ -77,7 +77,7 @@ public class MusicManager : MonoBehaviour
 
         scoreData = JsonUtility.FromJson<ScoreData>(scoreDataText);
 
-        notesManager.SetTempo(bpm);
+        notesManager.SetTempo(scoreData.bpm);
         music.clip = Resources.Load("Music/" + scoreData.resource, typeof(AudioClip)) as AudioClip;
 
         music.Play();
