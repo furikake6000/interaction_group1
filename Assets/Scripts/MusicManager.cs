@@ -6,6 +6,8 @@ using UnityEngine;
 public class ScoreData
 {
     public int bpm;
+    public string resource;
+    public float length;
     public NoteData[] notes;
 }
 [System.Serializable]
@@ -35,7 +37,6 @@ public class NoteData
 public class MusicManager : MonoBehaviour
 {
     [SerializeField] float bpm;
-    [SerializeField] string scoreFileName;
 
     NotesManager notesManager;
     AudioSource music;
@@ -47,14 +48,14 @@ public class MusicManager : MonoBehaviour
         notesManager = GetComponent<NotesManager>();
         music = GetComponent<AudioSource>();
 
-        LoadScoreFile();
-
-        notesManager.SetTempo(bpm);
+        // LoadScoreFile("Tutorial1");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(scoreData == null) return;
+
         float beatTime = music.time * bpm / 60.0f;
 
         foreach (NoteData nd in scoreData.notes){
@@ -63,14 +64,23 @@ public class MusicManager : MonoBehaviour
                 nd.enabled = true;
             }
         }
+
+        if (beatTime > scoreData.length){
+            music.Stop();
+        }
     }
 
-    void LoadScoreFile(){
+    public void LoadScoreFile(string scoreFileName){
         TextAsset textasset = new TextAsset();
         textasset = Resources.Load("Scores/" + scoreFileName, typeof(TextAsset) )as TextAsset;
         string scoreDataText = textasset.text; 
 
         scoreData = JsonUtility.FromJson<ScoreData>(scoreDataText);
+
+        notesManager.SetTempo(bpm);
+        music.clip = Resources.Load("Music/" + scoreData.resource, typeof(AudioClip)) as AudioClip;
+
+        music.Play();
     }
 
     // Seconds per beat
