@@ -124,6 +124,8 @@ public class NotesManager : MonoBehaviour
         {NoteType.Top, 1.0f}
     };
 
+    public int missCounter, hitCounter;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -155,8 +157,10 @@ public class NotesManager : MonoBehaviour
         // 音を鳴らす
         if (isHit) {
             hitAudio.Play();
+            hitCounter++;
         } else {
             missAudio.Play();
+            missCounter++;
         }
     }
     public void Shake(){
@@ -175,5 +179,10 @@ public class NotesManager : MonoBehaviour
 
     public void AddNote(NoteType type){
         notes.Add(new Note(type));
+    }
+
+    public void ResetCounter() {
+        missCounter = 0;
+        hitCounter = 0;
     }
 }

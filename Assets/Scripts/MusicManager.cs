@@ -87,4 +87,8 @@ public class MusicManager : MonoBehaviour
     public float Spb(){
         return 60.0f / (float)bpm;
     }
+
+    public bool isPlay() {
+        return music.isPlaying;
+    }
 }

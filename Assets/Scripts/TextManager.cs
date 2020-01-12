@@ -7,21 +7,36 @@ public class TextManager : MonoBehaviour
 {
     [SerializeField] Text t;
     [SerializeField] Text tapToNextText;
-
     [SerializeField] MusicManager musicManager;
+    [SerializeField] NotesManager notesManager;
 
     string[] texts = new string[]{
         "SWINGへようこそ！",
         "SWINGは\nリズムにノリながら\nテニスをプレイする\nリズムゲームです",
         "ここでは\nゲームの遊び方を\n説明します",
-        "スマホを\n左右に振ってみよう"
+        "スマホを\n左右に振ってみよう",
+        "いい感じ！",
+        "続けて、\nリズムに合わせて\n振ってみよう",
+        "カン、カン、(シュッ)\nのタイミングで\n左に振ってみよう",
+        "もう一度！\nリズムに合わせて！",
+        "いい感じ！",
+        "次は右\nいってみよう！",
+        "ポン、ポン、(シュッ)\nのタイミングで\n右に振ってみよう",
+        "もう一度！\nリズムに合わせて！",
+        "いい感じ！",
+        "次は左右に\n連続で来るぞ！",
+        "カン、ポン、カン、ポン\n(左、右、左、右)\nのタイミングで\n左右に振ってみよう",
+        "もう一度！\n落ち着いて！",
+        "いい感じ！",
+        "それでは本番\n行ってみましょう！",
+        ""
     };
 
     int state = -1;
     bool waitForInput = false;
     // 遷移してはいけないstateのリスト
     List<int> pauseStates = new List<int>(){
-        3
+        3, 6, 10, 14, 18
     };
 
     // Start is called before the first frame update
@@ -33,8 +48,56 @@ public class TextManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (waitForInput && GetTouchState() && !pauseStates.Contains(state)) {
-            GotoNextText();
+        if (waitForInput) {
+            if (!pauseStates.Contains(state) && GetTouchState()){
+                switch(state) {
+                case 7:
+                    GotoText(5);
+                    break;
+                case 11:
+                    GotoText(9);
+                    break;
+                case 15:
+                    GotoText(13);
+                    break;
+                }
+                GotoNextText();
+            }
+
+            switch(state) {
+            case 3:
+                if (notesManager.missCounter >= 3){
+                    GotoNextText();
+                }
+                break;
+            case 6:
+                if (!musicManager.isPlay()) {
+                    if (notesManager.hitCounter >= 2) {
+                        GotoText(8);
+                    }else {
+                        GotoNextText();
+                    }
+                }
+                break;
+            case 10:
+                if (!musicManager.isPlay()) {
+                    if (notesManager.hitCounter >= 2) {
+                        GotoText(12);
+                    }else {
+                        GotoNextText();
+                    }
+                }
+                break;
+            case 14:
+                if (!musicManager.isPlay()) {
+                    if (notesManager.hitCounter >= 8) {
+                        GotoText(16);
+                    }else {
+                        GotoNextText();
+                    }
+                }
+                break;
+            }
         }
     }
 
@@ -64,9 +127,27 @@ public class TextManager : MonoBehaviour
     void WaitForNextInput() {
         waitForInput = true;
 
-        if (state == 3) {
+        switch (state) {
+        case 3:
+            notesManager.ResetCounter();
+            break;
+        case 6:
             musicManager.LoadScoreFile("Tutorial1");
+            break;
+        case 10:
+            musicManager.LoadScoreFile("Tutorial2");
+            break;
+        case 14:
+            musicManager.LoadScoreFile("Tutorial3");
+            break;
+        case 18:
+            musicManager.LoadScoreFile("Jumper");
+            break;
         }
+    }
+    void GotoText(int gotoState) {
+        state = gotoState - 1;
+        GotoNextText();
     }
     void SetTextAlpha(float value) {
         t.color = new Color(t.color.r, t.color.g, t.color.b, value);

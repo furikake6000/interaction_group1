@@ -1,18 +1,18 @@
 {
-    "resource": "tutorial",
-    "bpm": 120,
+    "resource": "jumper",
+    "bpm": 178.3,
     "length": 26,
     "notes": [
         {
-            "time": 4.0,
+            "time": 8.0,
             "type": "left"
         },
         {
-            "time": 12.0,
+            "time": 16.0,
             "type": "left"
         },
         {
-            "time": 20.0,
+            "time": 24.0,
             "type": "left"
         }
     ]

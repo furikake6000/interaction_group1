@@ -819,6 +819,7 @@ MonoBehaviour:
   t: {fileID: 1385048799}
   tapToNextText: {fileID: 1898105364}
   musicManager: {fileID: 1697347950}
+  notesManager: {fileID: 1697347951}
 --- !u!114 &1385048799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1045,6 +1046,8 @@ MonoBehaviour:
   hitAudio: {fileID: 2000198006}
   missAudio: {fileID: 1743574306}
   timeMargin: 0.3
+  missCounter: 0
+  hitCounter: 0
 --- !u!4 &1697347952
 Transform:
   m_ObjectHideFlags: 0
@@ -1075,7 +1078,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
