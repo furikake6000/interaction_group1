@@ -8,6 +8,8 @@ public class TextManager : MonoBehaviour
     [SerializeField] Text t;
     [SerializeField] Text tapToNextText;
 
+    [SerializeField] MusicManager musicManager;
+
     string[] texts = new string[]{
         "SWINGへようこそ！",
         "SWINGは\nリズムにノリながら\nテニスをプレイする\nリズムゲームです",
@@ -61,6 +63,10 @@ public class TextManager : MonoBehaviour
     }
     void WaitForNextInput() {
         waitForInput = true;
+
+        if (state == 3) {
+            musicManager.LoadScoreFile("Tutorial1");
+        }
     }
     void SetTextAlpha(float value) {
         t.color = new Color(t.color.r, t.color.g, t.color.b, value);

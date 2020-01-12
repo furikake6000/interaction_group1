@@ -48,12 +48,14 @@ public class MusicManager : MonoBehaviour
         notesManager = GetComponent<NotesManager>();
         music = GetComponent<AudioSource>();
 
-        LoadScoreFile("Tutorial1");
+        // LoadScoreFile("Tutorial1");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(scoreData == null) return;
+
         float beatTime = music.time * bpm / 60.0f;
 
         foreach (NoteData nd in scoreData.notes){
@@ -68,7 +70,7 @@ public class MusicManager : MonoBehaviour
         }
     }
 
-    void LoadScoreFile(string scoreFileName){
+    public void LoadScoreFile(string scoreFileName){
         TextAsset textasset = new TextAsset();
         textasset = Resources.Load("Scores/" + scoreFileName, typeof(TextAsset) )as TextAsset;
         string scoreDataText = textasset.text; 
