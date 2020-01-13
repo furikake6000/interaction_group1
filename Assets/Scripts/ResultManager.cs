@@ -21,7 +21,7 @@ public class ResultManager : MonoBehaviour
         float accuracy = (float)scoreGood / 45.0f;
         scorePerfectText.text = (accuracy >= 0.8f ? "Excellent!" : "Good job!");
         scoreGoodText.text = "Score " + scoreGood.ToString() + "/45";
-        scoreMissText.text = (int)accuracy + " %";
+        scoreMissText.text = (int)(accuracy * 100) + " %";
 
     }
 
