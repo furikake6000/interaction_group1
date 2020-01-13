@@ -1,0 +1,19 @@
+{
+    "resource": "tutorial",
+    "bpm": 120,
+    "length": 36,
+    "notes": [
+        {
+            "time": 4.0,
+            "type": "zigzag"
+        },
+        {
+            "time": 16.0,
+            "type": "zigzag"
+        },
+        {
+            "time": 28.0,
+            "type": "zigzag"
+        }
+    ]
+}
