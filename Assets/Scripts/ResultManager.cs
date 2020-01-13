@@ -17,9 +17,11 @@ public class ResultManager : MonoBehaviour
         Text scorePerfectText = scorePerfectObj.GetComponent<Text> ();
         Text scoreGoodText = scoreGoodObj.GetComponent<Text> ();
         Text scoreMissText = scoreMissObj.GetComponent<Text> ();
-        scorePerfectText.text = scorePerfect.ToString();
-        scoreGoodText.text = scoreGood.ToString();
-        scoreMissText.text = scoreMiss.ToString();
+
+        float accuracy = (float)scoreGood / 45.0f;
+        scorePerfectText.text = (accuracy >= 0.8f ? "Excellent!" : "Good job!");
+        scoreGoodText.text = "Score " + scoreGood.ToString() + "/45";
+        scoreMissText.text = (int)accuracy + " %";
 
     }
 
