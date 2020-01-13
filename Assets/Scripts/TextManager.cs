@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TextManager : MonoBehaviour
 {
@@ -95,6 +96,12 @@ public class TextManager : MonoBehaviour
                     }else {
                         GotoNextText();
                     }
+                }
+                break;
+            case 18:
+                if (!musicManager.isPlay()) {
+                    SceneManager.LoadScene("ResultScene");
+                    AccelInput.goodCounter = notesManager.hitCounter;
                 }
                 break;
             }
